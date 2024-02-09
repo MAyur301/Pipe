@@ -7,7 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Pipe';
-
+  appStatus = new Promise((resolve,reject) => {
+    setTimeout( ()=> {
+       resolve('stable');
+    } , 2000);
+  } );
   servers =[
     {
       instanceType: 'medium',
@@ -38,5 +42,14 @@ export class AppComponent {
       'list-group-item-danger':server.status ==='critical'
     }
 
+  }
+  onAddserver()
+  {
+    this.servers.push({
+      instanceType:'small',
+      name:'New Server',
+      status:'stable',
+      started: new Date(15,1,2017)
+    });
   }
 }
